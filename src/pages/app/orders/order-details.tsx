@@ -14,8 +14,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface OrderDetailsProps {}
-export function OrderDetails(props: OrderDetailsProps) {
+export function OrderDetails() {
   return (
     <DialogContent>
       <DialogHeader>
