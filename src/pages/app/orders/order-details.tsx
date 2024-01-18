@@ -87,8 +87,12 @@ export function OrderDetails(props: OrderDetailsProps) {
             </TableRow>
           </TableBody>
           <TableFooter>
-            <TableCell colSpan={3}>Total do pedido</TableCell>
-            <TableCell className="text-right font-medium">R$ 125,70</TableCell>
+            <TableRow>
+              <TableCell colSpan={3}>Total do pedido</TableCell>
+              <TableCell className="text-right font-medium">
+                R$ 125,70
+              </TableCell>
+            </TableRow>
           </TableFooter>
         </Table>
       </div>

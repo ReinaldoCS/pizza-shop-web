@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
+import { PageTitle } from '@/components/page-title'
 import { Pagination } from '@/components/pagination'
 import {
   Table,
@@ -18,7 +19,7 @@ export function Orders() {
       <Helmet title="Pedidos" />
 
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold tracking-tight">Pedidos</h1>
+        <PageTitle value="Pedidos" />
 
         <div className="space-y-2.5">
           <OrderTableFilters />
