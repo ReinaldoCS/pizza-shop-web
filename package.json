@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:mock": "vite --port 50789 --mode mock",
     "build": "tsc && vite build",
     "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
@@ -28,6 +29,7 @@
     "localforage": "^1.10.0",
     "lucide-react": "^0.309.0",
     "match-sorter": "^6.3.1",
+    "msw": "^2.1.5",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.2.0",
@@ -62,5 +64,10 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.2.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
