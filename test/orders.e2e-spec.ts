@@ -3,11 +3,11 @@ import { expect, test } from '@playwright/test'
 test('list orders', async ({ page }) => {
   await page.goto('/orders', { waitUntil: 'networkidle' })
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-1', exact: true }),
   ).toBeVisible()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-10', exact: true }),
   ).toBeVisible()
 })
@@ -15,47 +15,51 @@ test('list orders', async ({ page }) => {
 test('paginate orders', async ({ page }) => {
   await page.goto('/orders', { waitUntil: 'networkidle' })
 
-  expect(page.getByRole('button', { name: 'Primeira página' })).toBeDisabled()
+  await expect(
+    page.getByRole('button', { name: 'Primeira página' }),
+  ).toBeDisabled()
 
   await page.getByRole('button', { name: 'Próxima página' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-11', exact: true }),
   ).toBeVisible()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-20', exact: true }),
   ).toBeVisible()
 
   await page.getByRole('button', { name: 'Última página' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-51', exact: true }),
   ).toBeVisible()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-60', exact: true }),
   ).toBeVisible()
 
-  expect(page.getByRole('button', { name: 'Última página' })).toBeDisabled()
+  await expect(
+    page.getByRole('button', { name: 'Última página' }),
+  ).toBeDisabled()
 
   await page.getByRole('button', { name: 'Página anterior' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-41', exact: true }),
   ).toBeVisible()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-50', exact: true }),
   ).toBeVisible()
 
   await page.getByRole('button', { name: 'Primeira página' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-1', exact: true }),
   ).toBeVisible()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-10', exact: true }),
   ).toBeVisible()
 })
@@ -66,7 +70,7 @@ test('filter by order id', async ({ page }) => {
   page.getByPlaceholder('ID do pedido').fill('order-11')
   await page.getByRole('button', { name: 'Filtrar resultados' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-11', exact: true }),
   ).toBeVisible()
 })
@@ -77,7 +81,7 @@ test('filter by customer name', async ({ page }) => {
   page.getByPlaceholder('Nome do cliente').fill('customer-11')
   await page.getByRole('button', { name: 'Filtrar resultados' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'customer-11', exact: true }),
   ).toBeVisible()
 })
@@ -90,6 +94,6 @@ test('filter by status', async ({ page }) => {
   await page.getByRole('button', { name: 'Filtrar resultados' }).click()
 
   // await page.waitForTimeout(2000)
-  const tableRows = await page.getByRole('cell', { name: 'Pendente' }).all()
-  expect(tableRows).toHaveLength(10)
+  const tableRows = page.getByRole('cell', { name: 'Pendente' })
+  await expect(tableRows).toHaveCount(10)
 })

@@ -29,7 +29,7 @@ test('sign up with error', async ({ page }) => {
 
   const toast = page.getByText('Erro ao cadastrar restaurante.')
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 
   // await page.waitForTimeout(2000)
 })
